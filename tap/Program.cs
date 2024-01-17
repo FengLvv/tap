@@ -9,6 +9,7 @@ namespace HelloWorldApplication
         {
             static void StartLoop()
             {
+                GlobalVariables.InitializeGlobalVariables();
                 RenderPipeline.OnStart();
             }
 

@@ -4,9 +4,16 @@ public static class GlobalVariables
 {
     public static float dt = 0.1f;
 
-    public static string[,] PatternPlayer = BuildTriangle3x3(LetterPlayer);
-    public static string[,] PatternBill = Build1x1(LetterBill);
-    public static string[,] PatternGuest = BuildRectangle2x2(LetterGuest);
+    public static string[,] PatternPlayer = new string[3, 3];
+    public static string[,] PatternBill = new string[1, 1];
+    public static string[,] PatternGuest = new string[2, 2];
+ 
+    public static void InitializeGlobalVariables()
+    {
+        PatternPlayer = BuildTriangle3x3(LetterPlayer);
+        PatternBill = Build1x1(LetterBill);
+        PatternGuest = BuildRectangle2x2(LetterGuest);
+    }
 
     public static string[,] BuildTriangle3x3(string content)
     {
@@ -17,18 +24,19 @@ public static class GlobalVariables
             { content, content, content }
         };
     }
+
     public static string[,] BuildRectangle2x2(string content)
     {
         return new[,]
         {
-            { content, content },
-            { content, content },
-            { content, content }
+            { content },
+            { content }
         };
     }
+
     public static string[,] Build1x1(string content)
     {
-        return new [,] { { content } };
+        return new[,] { { content } };
     }
 
     public static string LetterBill = "酒"; //1x1
