@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace HelloWorldApplication;
 
 public static class GlobalVariables
@@ -7,7 +9,12 @@ public static class GlobalVariables
     public static string[,] PatternPlayer = new string[3, 3];
     public static string[,] PatternBill = new string[1, 1];
     public static string[,] PatternGuest = new string[2, 2];
- 
+    public static List<Beer> beers = new List<Beer>();
+
+    public static float Distance(Vector2 v1, Vector2 v2)
+    {
+        return (float)Math.Sqrt(Math.Pow(v2.X - v1.X, 2) + Math.Pow(v2.Y - v1.Y, 2));
+    }
     public static void InitializeGlobalVariables()
     {
         PatternPlayer = BuildTriangle3x3(LetterPlayer);
