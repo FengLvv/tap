@@ -3,14 +3,25 @@
 namespace HelloWorldApplication
 {
     /* 类名为 HelloWorld */
-    class HelloWorld
+    class MainLoop
     {
-        /* main函数 */
         static void Main(string[] args)
         {
-            /* 我的第一个 C# 程序 */
-            Console.WriteLine("Hello World!");
+            static void StartLoop()
+            {
+                RenderPipeline.OnStart();
+            }
+            StartLoop();
+
+            var canvas = RenderPipeline.canvas;
+    
             Console.ReadKey();
+      
         }
     }
+}
+
+public static class GlobalVariables{
+    public static float dt = 0.1f;
+
 }
