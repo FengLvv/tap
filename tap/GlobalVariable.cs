@@ -5,12 +5,14 @@ namespace HelloWorldApplication;
 public static class GlobalVariables
 {
     public static float dt = 0.1f;
+    public static float CurrentTime = 0f;
 
     public static string[,] PatternPlayer = new string[3, 3];
     public static string[,] PatternBill = new string[1, 1];
     public static string[,] PatternGuest = new string[2, 2];
     public static List<Beer> beers = new List<Beer>();
-
+    public static List<Customer> customers = new List<Customer>();
+    public static Player player = new Player(new Vector2(5,6), 1);
     public static float Distance(Vector2 v1, Vector2 v2)
     {
         return (float)Math.Sqrt(Math.Pow(v2.X - v1.X, 2) + Math.Pow(v2.Y - v1.Y, 2));

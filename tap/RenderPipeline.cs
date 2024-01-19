@@ -7,7 +7,7 @@ public static class RenderPipeline
 {
     static string _empty = GlobalVariables.LetterEmpty;
 
-    public static List<GameObj> _objs;
+    //public static List<GameObj> _objs;
 
     private static readonly int CanvasSize = 25;
     private static readonly int BlankSize = 2;
@@ -57,11 +57,29 @@ public static class RenderPipeline
 
     public static void Update()
     {
-        List<int> a = new();
-        InitCanvasContent(_empty);
-        string[,] pattern = GlobalVariables.PatternGuest;
-        Vector2 pos = new Vector2(10, 10);
-        WritePatternOnCanvas(pattern, pos);
+        
+        //List<int> a = new();
+        //InitCanvasContent(_empty);
+
+        //string[,] pattern = GlobalVariables.PatternGuest;
+        //Vector2 pos = new Vector2(10, 10);
+        //WritePatternOnCanvas(pattern, pos);
+
+        WritePatternOnCanvas(GlobalVariables.PatternPlayer, GlobalVariables.player.pos);
+
+        for(int i=0; i < GlobalVariables.beers.Count; i++){
+            Beer beer = GlobalVariables.beers[i];
+            WritePatternOnCanvas(beer.pattern, beer.pos);
+        }
+
+        //Console.WriteLine(GlobalVariables.customers.Count);
+        
+        for(int i=0; i < GlobalVariables.customers.Count; i++){
+            Customer cust = GlobalVariables.customers[i];
+            //Console.WriteLine(cust.pos);
+            WritePatternOnCanvas(GlobalVariables.PatternGuest, cust.pos);
+        }
+
         RenderCanvas();
     }
     

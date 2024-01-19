@@ -3,21 +3,19 @@ using System.Numerics;
 namespace HelloWorldApplication;
 
 
-public abstract class GameObj
-{
-    private Vector2 pos;
-    private string[,] pattern; 
-    private int movespeed;
-    private void Update(){}
-}
 
-public class Customer:GameObj
+public class Customer
 {
-    protected Vector2 pos;
-    protected string[,] pattern = GlobalVariables.PatternPlayer;
+    public Vector2 pos;
+    public string[,] pattern = GlobalVariables.PatternPlayer;
     protected int movespeed;
 
-    private int liveflag;
+    public int liveflag = 1;
+    public Customer(Vector2 Pos, int Movespeed)
+    {
+        pos = Pos;
+        movespeed = Movespeed;
+    }
     protected void automove(){
         pos += new Vector2(-1,0) * movespeed;
     }
@@ -32,19 +30,29 @@ public class Customer:GameObj
         }
     }
 
-    protected void Update(){
+    public void Update(){
         automove();
         getbeer();
     }
 }
 
-public class Player:GameObj
+public class Player
 {
-    protected Vector2 pos;
-    protected string[,] pattern = GlobalVariables.PatternPlayer;
+    public Vector2 pos;
+    public string[,] pattern;
     protected int movespeed;
 
+    public Player(Vector2 Pos, int Movespeed)
+    {
+        pos = Pos;
+        movespeed = Movespeed;
+        pattern = GlobalVariables.PatternPlayer;
+    }
+
     private void move(){
+        bool isRunning = true;
+
+        
         if (Console.KeyAvailable)
         {
             ConsoleKey key = Console.ReadKey(true).Key;
@@ -69,33 +77,44 @@ public class Player:GameObj
                     break;
             }
         }
+
+        
+        
     }
 
-    private void sendbeer(){
-
-        Beer beer = new Beer();
+    private void sendbeer()
+    {
+        Vector2 beerpos = new Vector2(1,0) + pos;
+        int beerspeed = 1;
+        Beer beer = new Beer(beerpos, beerspeed);
     }
 
     
-    protected void Update(){
+    public void Update(){
         move();
     }
 }
 
-public class Beer:GameObj
+public class Beer
 {
     public Vector2 pos;
-    protected string[,] pattern;
+    public string[,] pattern = GlobalVariables.PatternBill;
     protected int movespeed;
 
     public int liveflag;
+
+    public Beer(Vector2 Pos, int Movespeed)
+    {
+        pos = Pos;
+        movespeed = Movespeed;
+    }
 
     private void automove(){
         pos += new Vector2(1,0) * movespeed;
     }
 
     
-    protected void Update(){
+    public void Update(){
         automove();
     }
 
